@@ -1,5 +1,3 @@
-#include "SR04.h"
-
 // PINs in use
 #define TRIG_PIN 11       
 #define ECHO_PIN 10      
@@ -10,9 +8,6 @@
 
 long distance;
 bool found = false;
-
-// Ultrasonic vars
-SR04 sr04 = SR04(ECHO_PIN, TRIG_PIN);
 
 void setup() {
   Serial.begin(9600);
@@ -25,7 +20,17 @@ void loop() {
 }
 
 void detectMotion() {
-  distance = sr04.Distance();
+  long duration, distance;
+
+  // Ultrasonic magic with pins
+  digitalWrite(TRIGGER_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIGGER_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIGGER_PIN, LOW);
+  duration = pulseIn(ECHO_PIN, HIGH);
+  distance = (duration / 2) / 29.1;
+
   if (distance < MIN_DISTANCE) {
     found = true;
     Serial.print("Motion detected! Distance: ");
