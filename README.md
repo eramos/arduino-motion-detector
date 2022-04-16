@@ -3,12 +3,14 @@
 Simple motion detector for arduino boards.
 
 ## Hardware required
+
 - 1x Arduino board (or compatible)
 - 1x HC-SR04 Ultrasonic Sensor Module
 - 1x Active buzzer
 - 5x F-M female to male Dupont wires
 
 ## Software required
+
 - Arduino IDE
 
 ## Usage
